@@ -1,0 +1,12 @@
+#!/bin/bash -l
+
+#BSUB -P STF007SUMMITDEV
+#BSUB -J test_mandelbrot
+#BSUB -o %J.out
+#BSUB -e %J.err
+#BSUB -R "span[ptile=1]"		# Number of MPI ranks per node
+#BSUB -n 1									# Total number of MPI ranks
+#BSUB -x
+#BSUB -W 10
+
+numactl --physcpubind=0 nvprof -s -o step3a.nvvp ./run
